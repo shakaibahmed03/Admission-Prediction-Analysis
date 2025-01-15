@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Page</title>
+
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        /* General Reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            box-sizing: border-box;
+        }
+
+        /* Background */
+        body {
+            background: linear-gradient(to bottom right, #f5f7fa, #c3dfe6);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Main Container */
+        .table-users {
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            padding: 30px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* Header Styling */
+        .header {
+            font-size: 2rem;
+            color: #0056b3;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        /* Prediction Text */
+        p {
+            font-size: 1.2rem;
+            color: #333;
+            margin: 20px 0;
+        }
+
+        p span {
+            font-weight: bold;
+            color: #0056b3;
+        }
+
+        /* List Section */
+        .university-list {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .university-list h2 {
+            font-size: 1.5rem;
+            color: #0056b3;
+            margin-bottom: 10px;
+        }
+
+        .university-list ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .university-list ul li {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            color: #333;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Subtle Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="table-users">
+        <div class="header">Prediction</div>
+        <p>Your chance for admission is <span>{{ prediction }}</span> percent</p>
+
+        <div class="university-list">
+            <h2>The following universities fall in your category:</h2>
+            <ul>
+                {% for university in universities %}
+                    <li>{{ university }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="footer">
+            &copy; 2024 All rights reserved.
+        </div>
+    </div>
+</body>
+
+</html>

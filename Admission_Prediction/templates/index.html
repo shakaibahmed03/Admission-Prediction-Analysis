@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Search Page</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(to bottom, #ffffff, #e6f7ff);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    .content {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        padding: 30px;
+        max-width: 700px;
+        width: 100%;
+        position: relative;
+    }
+
+    /* Updated heading style */
+    h1 {
+        font-size: 2.5rem;
+        color: #9b4dca; /* Purple color */
+        text-align: center;
+        margin-bottom: 25px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 8px rgba(155, 77, 202, 0.4); /* Adding shadow effect */
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form label {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+    }
+
+    .form input, .form select {
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+        box-sizing: border-box;
+        background-color: #f9f9f9;
+    }
+
+    .form input:focus, .form select:focus {
+        outline: none;
+        border-color: #0056b3;
+        box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
+    }
+
+    .form input[type="submit"] {
+        background-color: #0056b3;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-size: 1.1rem;
+        font-weight: bold;
+        padding: 12px;
+    }
+
+    .form input[type="submit"]:hover {
+        background-color: #003d80;
+    }
+
+    .form input[type="number"]::-webkit-inner-spin-button,
+    .form input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    .footer {
+        text-align: center;
+        font-size: 0.9rem;
+        color: #555;
+        margin-top: 20px;
+    }
+
+    .logo {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .logo span {
+        display: block;
+        font-size: 2rem;
+        color: #0056b3;
+        font-weight: bold;
+        margin-top: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 1px 1px 5px rgba(0, 86, 179, 0.3);
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <div class="logo">
+        <span>Corizo</span>
+        <span>Empowering Tomorrow's Leaders</span>
+    </div>
+
+    <h1>AdmitScope: Your Gateway to Higher Education</h1> <!-- Updated Heading -->
+
+    <div class="form">
+        <form action="/predict" method="POST">
+            <label for="gre_score">GRE Score</label>
+            <input type="number" name="gre_score" id="gre_score" placeholder="Enter your GRE score (out of 340)" min="0" max="340">
+
+            <label for="toefl_score">TOEFL Score</label>
+            <input type="number" name="toefl_score" id="toefl_score" placeholder="Enter your TOEFL score (out of 120)" min="0" max="120">
+
+            <label for="university_rating">University Rating</label>
+            <input type="number" name="university_rating" id="university_rating" placeholder="University rating (out of 5)" min="1" max="5">
+
+            <label for="sop">SOP Score</label>
+            <input type="number" name="sop" id="sop" placeholder="Statement of Purpose strength (out of 5)" min="1" max="5" step="any">
+
+            <label for="lor">LOR Score</label>
+            <input type="number" name="lor" id="lor" placeholder="Letter of Recommendation strength (out of 5)" min="1" max="5" step="any">
+
+            <label for="cgpa">CGPA</label>
+            <input type="number" name="cgpa" id="cgpa" placeholder="Enter your Undergraduate CGPA (out of 10)" min="0" max="10" step="any">
+
+            <label for="research">Research Experience</label>
+            <select name="research" id="research">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <input type="submit" value="Predict">
+        </form>
+    </div>
+</div>
+
+<div class="footer">
+    &copy; 2024 Corizo. All rights reserved.
+</div>
+{% endblock %}
